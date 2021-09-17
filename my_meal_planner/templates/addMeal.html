@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Meal
+{% endblock %}
+
+{% block main %}
+    <form action="/addMeal" method="post">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id ="meal_name" name="meal_name" placeholder="Meal Name" type="text">
+        </div>
+
+        <table class="navbar-expand-md navbar-light bg-light border" width=100%>
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Unit of Measure</th>
+        </tr>
+
+        {% for i in range(0, 10) %}
+        <tr id="ingredient_row_{{ i }}" name="ingredient_row_{{ i }}">
+            <td>
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" id= "ingredient_{{ i }}" name="ingredient_{{ i }}" placeholder="Ingredient" type="text">
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group">
+                    <input type="number" id="quantity_{{ i }}" name="quantity_{{ i }}" min="0" max="100" step=".1">
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group">
+                    <select id="unit_{{ i }}" name="unit_{{ i }}">
+                        <option value="individuals">individuals</option>
+                        <option value="dozen">dozen</option>
+                        <option value="package">package</option>
+                        <option value="oz">oz</option>
+                        <option value="lb">lb</option>
+                        <option value="mg">mg</option>
+                        <option value="g">g</option>
+                        <option value="tsp">tsp</option>
+                        <option value="tbs">tbs</option>
+                        <option value="cup">cup</option>
+                        <option value="fl-oz">fl-oz</option>
+                        <option value="pnt">pnt</option>
+                        <option value="qt">qt</option>
+                        <option value="gal">gal</option>
+                        <option value="ml">ml</option>
+                        <option value="l">l</option>
+                    </select>
+                </div>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+
+
+        </table>
+        <button class="btn btn-primary" type="submit" style="margin-top: 15px">Add Meal</button>
+    </form>
+
+{% endblock %}

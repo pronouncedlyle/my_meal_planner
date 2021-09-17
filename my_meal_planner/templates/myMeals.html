@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Meals
+{% endblock %}
+
+{% block main %}
+
+    <form action="/addMeal" method="get">
+        <button class="btn btn-primary" type="submit">Add Meal</button>
+    </form>
+
+{% if empty == True  %}
+
+    <p> Looks like you don't have any meals yet, click above to add some!</p>
+
+{% else %}
+
+    <form id="myMeals" name="myMeals" action="/myMeals" method="post" style="margin-bottom: 15px">
+        <table class="navbar-expand-md navbar-light bg-light border" width=100%>
+            <header class="navbar-brand"> My Meals </header>
+
+            <tr>
+                <th>Meal</th>
+                <th>M</th>
+                <th>T</th>
+                <th>W</th>
+                <th>Th</th>
+                <th>F</th>
+                <th>S</th>
+                <th>Su</th>
+            </tr>
+
+            {% for row in myMeals %}
+
+            <!-- modal for pop-up -->
+            <div class="modal fade" id="{{ "modal_" ~ row["meal_id"] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ row["meal_name"] }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div class="modal-body">
+                  </div>
+                    <p> Ingredient list coming soon!</p>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form id="deleteMealForm" name="deleteMealForm" action="/deleteMeal" method="POST">
+                        <input type="hidden" name="deleteMeal" value="{{ row["meal_id"] }}">
+                        <button name="delete" type="submit" class="btn btn-primary" style="background-color: red">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#{{ "modal_" ~ row["meal_id"] }}">
+                          {{ row["meal_name"] }}
+                    </button>
+                </td>
+                <td><input type="checkbox"  name="{{ "M" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "T" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "W" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "Th" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "F" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "S" ~ row["meal_name"] }}"></td>
+                <td><input type="checkbox"  name="{{ "Su" ~ row["meal_name"] }}"></td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+        <button name="listSubmit" type="submit" class="btn btn-primary btn-lg" style="margin-top: 15px">Create Shopping List</button>
+    </form>
+
+{% endif %}
+
+{% endblock %}
+

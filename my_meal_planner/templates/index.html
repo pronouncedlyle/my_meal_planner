@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block main %}
+    <table class="navbar-expand-md navbar-light bg-light border" width=100%>
+        Welcome to My Meal Planner! Please log in or register below.
+    </table>
+    <form action="/index" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+    <table class="navbar-expand-md navbar-light bg-light border" width=100%>
+        Don't have an account yet? Register <a href="/register"> here</a>.
+    </table>
+{% endblock %}

@@ -1,0 +1,14 @@
+click
+cs50
+Flask
+greenlet
+itsdangerous
+Jinja2
+MarkupSafe
+Package
+pip
+setuptools
+SQLAlchemy
+sqlparse
+termcolor
+Werkzeug

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shopping List
+{% endblock %}
+
+{% block main %}
+<table class="navbar-expand-md navbar-light bg-light border" width=100%>
+    <header class="navbar-brand align-content-center"> Shopping List </header>
+
+
+    <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+    </tr>
+    {% for i in finalShoppingList %}
+    <tr>
+        {% for j, k in i.items() %}
+        <td>{{ k }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+<button class="btn btn-primary btn-lg align-content-center" onclick="printScreen()" style="margin-top: 15px">Print</button>
+
+{% endblock %}
