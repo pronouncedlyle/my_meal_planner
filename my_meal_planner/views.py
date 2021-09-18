@@ -5,7 +5,7 @@ import re
 from cs50 import SQL
 import sqlite3
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-#from flask_session import Session
+from flask_session import Session
 from tempfile import mkdtemp
 from functools import wraps
 #import requests
@@ -27,15 +27,14 @@ def after_request(response):
     return response
 
 # Configure session to use filesystem (instead of signed cookies)
-#app.config["SESSION_FILE_DIR"] = mkdtemp()
-#app.config["SESSION_PERMANENT"] = False
-#app.config["SESSION_TYPE"] = "filesystem"
-#Session(app)
+app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Configure CS50 Library to use SQLite database
-#db = SQL("my_meal_planner\local_database\mealPlanner.db")
+db = SQL("sqlite:///mealPlanner.db")
 
-connection = sqlite3.connect("mealPlanner.db")
 
 def login_required(f):
     """

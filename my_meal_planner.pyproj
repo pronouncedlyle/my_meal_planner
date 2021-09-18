@@ -36,10 +36,9 @@
     <Folder Include="my_meal_planner\" />
     <Folder Include="my_meal_planner\static\" />
     <Folder Include="my_meal_planner\templates\" />
-    <Folder Include="local_database\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="local_database\mealPlanner.db" />
+    <Content Include="mealPlanner.db" />
     <Content Include="my_meal_planner\static\favicon.ico" />
     <Content Include="my_meal_planner\static\scripts.js" />
     <Content Include="my_meal_planner\static\styles.css" />
