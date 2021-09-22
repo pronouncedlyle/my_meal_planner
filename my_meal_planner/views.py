@@ -65,7 +65,7 @@ def myMeals():
         for row in myMeals:
 
             # counts how many times the meal has been selected for the week
-            # this should probably be cleaned up and put into a function...
+            # this should probably be cleaned up and put into a function...run once per row, then submit separately?
             count = 0
 
             if request.form.getlist("M" + str(row["meal_name"])):
@@ -96,7 +96,7 @@ def myMeals():
 
                 # write ingredient info to dictionary in shoppingList
                 for row in ingredientList:
-                    shoppingList.append({"Ingredient": row["ingredient"] , "Quantity": row["quantity"] , "Unit": row["unit"]})
+                    shoppingList.append({"Ingredient": row["ingredient"] , "Quantity": (count * (int(row["quantity"]))) , "Unit": row["unit"]})
 
         # catches if user didn't check any boxes
         if shoppingList == []:
