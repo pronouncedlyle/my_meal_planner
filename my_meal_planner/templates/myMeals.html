@@ -25,26 +25,20 @@
             </div>
 
             <div class="modal-body">
-                <!--<p> Ingredient list coming soon!</p> -->
                 <table class="navbar-expand-md navbar-light bg-light border" width=100%>
                     <tr>
                         <th>Ingredient</th>
                         <th>Quantity</th>
                         <th>Unit</th>
                     </tr>
-                    <!-- This part below is the problem child-->
-                    {% for i in ingredients %}
-                    {% for key, value in i.items() %}
-                    {% if i.get(meal_id) == row["meal_id"] %}
+
+                    {% for row in ingredients %}
                     <tr>
-                        <td>{{ value["ingredient"] }}</td>
-                        <td>{{ value["quantity"] }}</td>
-                        <td>{{ value["unit"] }}</td>
+                        <td>{{ row["ingredient"] }}</td>
+                        <td>{{ row["quantity"] }}</td>
+                        <td>{{ row["unit"] }}</td>
                     </tr>
-                    {% endif %}
                     {% endfor %}
-                    {% endfor %}
-                    <!-- This part above is the problem child-->
 
                 </table>
 

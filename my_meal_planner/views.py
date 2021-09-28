@@ -127,14 +127,14 @@ def myMeals():
         myMeals = db.execute("SELECT * FROM meals WHERE user_id = :user_id ORDER BY meal_name COLLATE NOCASE;",
                              user_id = session["user_id"])
 
-        # this query was for the modal to populate ingredients for each meal. Add this feature later
-        #ingredients = db.execute("SELECT * FROM ingredients JOIN meals ON meals.meal_id = ingredients.meal_id WHERE user_id = :user_id ORDER BY ingredient COLLATE NOCASE;",
-                                 #user_id = session["user_id"])
+        # query was for the modal to populate ingredients for each meal. 
+        ingredients = db.execute("SELECT * FROM ingredients LEFT JOIN meals ON meals.meal_id = ingredients.meal_id WHERE meals.user_id = :user_id ORDER BY ingredient COLLATE NOCASE;",
+                                 user_id = session["user_id"])
 
         if len(myMeals) == 0:
             empty = True
 
-        return render_template("myMeals.html", myMeals=myMeals, empty=empty)
+        return render_template("myMeals.html", myMeals=myMeals, ingredients=ingredients, empty=empty)
 
 
 @app.route("/addMeal", methods=["GET", "POST"])
